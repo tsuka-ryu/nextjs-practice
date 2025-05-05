@@ -18,9 +18,9 @@ export async function searchProducts(
   formData: FormData
 ): Promise<{ error: string | null; products: Product[] | null }> {
   const query = formData.get("query") as string;
-  console.log({ query });
-  //   const res = await fetch(`https://dummyjson.com/products/search?q=${query}`);
-  const res = await fetch("https://dummyjson.com/http/404/Hello_Peter");
+  //   console.log({ query });
+  const res = await fetch(`https://dummyjson.com/products/search?q=${query}`);
+  //   const res = await fetch("https://dummyjson.com/http/404/Hello_Peter");
   const data = await res.json();
 
   if (!res.ok) {
