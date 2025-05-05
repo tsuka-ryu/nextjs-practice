@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { fetchRecipes } from "./_lib/fetch";
+import { UserProvider } from "./_lib/recipes-provider";
+import { Suspense } from "react";
 // import "./_lib/setup-fetch-logger";
 
 const geistSans = Geist({
@@ -23,10 +26,16 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const userPromise = fetchRecipes(); // do NOT await
+
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
+        <UserProvider userPromise={userPromise}>
+          <Suspense fallback={<div>loading...in root layout</div>}>
+            {children}
+          </Suspense>
+        </UserProvider>
       </body>
     </html>
   );
