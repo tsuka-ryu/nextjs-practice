@@ -1,4 +1,4 @@
-import { fetchComment, fetchPost } from "./_lib/fetch";
+import { fetchComment, fetchPost, fetchUser, preFetchUser } from "./_lib/fetch";
 
 export default async function ParaFetchPage({
   params,
@@ -7,6 +7,8 @@ export default async function ParaFetchPage({
 }) {
   const { id } = await params;
   console.log({ id });
+
+  preFetchUser(`${Number(id) + 1}`);
 
   return (
     <div>
@@ -24,6 +26,12 @@ async function PostBody({ postId }: { postId: string }) {
 
 async function Comments({ postId }: { postId: string }) {
   const res = await fetchComment(postId);
+  const user = await fetchUser(`${Number(postId) + 1}`);
 
-  return <div>COMMENT: {res.body}</div>;
+  return (
+    <>
+      <div>COMMENT: {res.body}</div>
+      <div>USER: {user.firstName}</div>
+    </>
+  );
 }

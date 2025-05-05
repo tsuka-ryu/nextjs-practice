@@ -21,11 +21,16 @@ export async function fetchComment(id: string): Promise<{ body: string }> {
 }
 
 export async function fetchUser(id: string): Promise<{ firstName: string }> {
-  const res = await fetch(`https://dummyjson.com/users/${id}/?delay=1000`);
+  const res = await fetch(`https://dummyjson.com/users/${id}/?delay=5000`);
   const data = await res.json();
 
-  console.log("fetchUser!");
+  console.log("fetchUser!", id);
   console.log({ data });
 
   return data;
 }
+
+export const preFetchUser = (id: string) => {
+  console.log("preload-fetch-user!");
+  void fetchUser(id);
+};
