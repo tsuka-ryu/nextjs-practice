@@ -1,6 +1,7 @@
 // https://dummyjson.com/docs
 // fetchのテスト
 
+// dynamic-ioを使った場合、use cacheかsuspenseを明示的にしないといけないので、この実装はビルドが通らなくなる、他の部分も同じ
 export const dynamic = "force-dynamic";
 
 export default async function DummyJSONTest() {
