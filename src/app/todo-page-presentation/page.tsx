@@ -7,6 +7,7 @@ export type Todo = {
   userId: number;
 };
 
+// revalidate:0 なので、dynamic renderingになっている
 export default async function Page() {
   const res = await fetch("https://dummyjson.com/todos/random", {
     next: {

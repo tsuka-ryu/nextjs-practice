@@ -1,5 +1,6 @@
 import { fetchComment, fetchPost, fetchUser, preFetchUser } from "./_lib/fetch";
 
+// paramなのでdynamic renderingになっているけど、generateStaticParams()を使うと、static renderingになる
 export default async function ParaFetchPage({
   params,
 }: {
